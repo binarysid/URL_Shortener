@@ -1,0 +1,14 @@
+#!/bin/bash
+
+export="export FLASK_APP=main.py"
+echo $export
+$export
+
+migrate="flask db migrate"
+echo $migrate
+$migrate
+
+upgrade="flask db upgrade"
+echo $upgrade
+$upgrade
+

@@ -1,0 +1,23 @@
+version: '2.4.1'
+
+services:
+  db:
+    image: mariadb:5.5
+    container_name: url_shortener_container
+    ports:
+      - "30000:3306"
+    env_file:
+       - .env.dev
+    restart: always
+  web:
+    build: .
+    command: python3 main.py
+    volumes:
+      - .:/app
+    ports:
+      - "5000:5000"
+    restart: always
+    depends_on:
+      - db
+    links:
+      - db
